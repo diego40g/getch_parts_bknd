@@ -30,3 +30,5 @@ auth.json
 /.fleet
 /.idea
 /.vscode
+
+composer.lock
