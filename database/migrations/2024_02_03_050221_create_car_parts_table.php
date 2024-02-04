@@ -13,7 +13,15 @@ return new class extends Migration
     {
         Schema::create('car_parts', function (Blueprint $table) {
             $table->id();
+            $table->string('code_part', 10)->uniqued();
+            $table->unsignedBigInteger('zone_id');
+            $table->string('name',256);
+            $table->text('description');
+            $table->boolean('status');
+            $table->binary('image')->nullable();
             $table->timestamps();
+
+            $table->foreign('zone_id')->references('id')->on('zones');
         });
     }
 

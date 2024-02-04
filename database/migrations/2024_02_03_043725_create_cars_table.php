@@ -11,8 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('nombre_del_modelos', function (Blueprint $table) {
+        Schema::create('cars', function (Blueprint $table) {
             $table->id();
+            $table->string('code_car', 10)->unique();
+            $table->string('brand');
+            $table->string('model');
+            $table->year('year');
+            $table->string('traction');
+            $table->string('engineType');
+            $table->string('kind');
+            $table->string('color');
+            $table->string('plate',8);
+            $table->binary('image');
+            $table->boolean('status');
             $table->timestamps();
         });
     }

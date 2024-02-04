@@ -13,7 +13,18 @@ return new class extends Migration
     {
         Schema::create('parts', function (Blueprint $table) {
             $table->id();
+            $table->string('code_part', 10)->unique();
+            $table->unsignedBigInteger('subcategory_id');
+            $table->unsignedBigInteger('car_id');
+            $table->string('bibliographic_name',256);
+            $table->string('common_name_1',256)->nullable();
+            $table->string('common_name_2',256)->nullable();
+            $table->binary('image')->nullable();
+            $table->boolean('status');
             $table->timestamps();
+
+            $table->foreign('subcategory_id')->references('id')->on('subcategories');
+            $table->foreign('car_id')->references('id')->on('cars');
         });
     }
 

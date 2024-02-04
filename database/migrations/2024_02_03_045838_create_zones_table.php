@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('zones', function (Blueprint $table) {
             $table->id();
+            $table->string('code_zone', 10)->unique();
+            $table->string('name',256);
+            $table->text('description');
+            $table->boolean('status');
             $table->timestamps();
         });
     }

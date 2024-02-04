@@ -13,7 +13,14 @@ return new class extends Migration
     {
         Schema::create('subcategories', function (Blueprint $table) {
             $table->id();
+            $table->string('code_subcategory', 10)->unique();
+            $table->unsignedBigInteger('car_part_id');
+            $table->string('name',256);
+            $table->text('description');
+            $table->boolean('status');
             $table->timestamps();
+
+            $table->foreign('car_part_id')->references('id')->on('car_parts');
         });
     }
 
