@@ -15,17 +15,17 @@ return new class extends Migration
             $table->id();
             $table->string('code_part', 10)->unique();
             $table->unsignedBigInteger('subcategory_id');
-            $table->unsignedBigInteger('car_id');
+            // $table->unsignedBigInteger('car_id');
             $table->string('bibliographic_name',256);
             $table->string('common_name_1',256)->nullable();
             $table->string('common_name_2',256)->nullable();
-            $table->binary('image')->nullable();
-            $table->boolean('status');
+            $table->boolean('status')->default(true);
             $table->timestamps();
 
             $table->foreign('subcategory_id')->references('id')->on('subcategories');
-            $table->foreign('car_id')->references('id')->on('cars');
+            // $table->foreign('car_id')->references('id')->on('cars');
         });
+        DB::statement("ALTER TABLE parts ADD image MEDIUMBLOB");
     }
 
     /**

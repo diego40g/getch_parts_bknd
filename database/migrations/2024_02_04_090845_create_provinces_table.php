@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('zones', function (Blueprint $table) {
+        Schema::create('provinces', function (Blueprint $table) {
             $table->id();
-            $table->string('code_zone', 10)->unique();
-            $table->string('name',256);
-            $table->text('description')->nulleable();
+            $table->string('code_province', 5)->unique();
+            $table->string('name', 127);
             $table->boolean('status')->default(true);
             $table->timestamps();
         });
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('zones');
+        Schema::dropIfExists('provinces');
     }
 };

@@ -20,12 +20,12 @@ return new class extends Migration
             $table->string('traction');
             $table->string('engineType');
             $table->string('kind');
-            $table->string('color');
-            $table->string('plate',8);
-            $table->binary('image');
-            $table->boolean('status');
+            // $table->string('color');
+            // $table->string('plate',8);
+            $table->boolean('status')->default(true);
             $table->timestamps();
         });
+        DB::statement("ALTER TABLE cars ADD image MEDIUMBLOB");
     }
 
     /**
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('nombre_del_modelos');
+        Schema::dropIfExists('cars');
     }
 };

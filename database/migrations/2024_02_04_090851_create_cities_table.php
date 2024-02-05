@@ -11,13 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('zones', function (Blueprint $table) {
+        Schema::create('cities', function (Blueprint $table) {
             $table->id();
-            $table->string('code_zone', 10)->unique();
-            $table->string('name',256);
-            $table->text('description')->nulleable();
+            $table->string('code_city', 5)->unique();
+            $table->unsignedBigInteger('province_id');
+            $table->string('name', 127);
             $table->boolean('status')->default(true);
             $table->timestamps();
+
+            $table->foreign('province_id')->references('id')->on('provinces');
         });
     }
 
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('zones');
+        Schema::dropIfExists('cities');
     }
 };

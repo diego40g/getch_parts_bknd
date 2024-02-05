@@ -16,13 +16,13 @@ return new class extends Migration
             $table->string('code_part', 10)->uniqued();
             $table->unsignedBigInteger('zone_id');
             $table->string('name',256);
-            $table->text('description');
-            $table->boolean('status');
-            $table->binary('image')->nullable();
+            $table->text('description')->nulleable();
+            $table->boolean('status')->default(true);
             $table->timestamps();
 
             $table->foreign('zone_id')->references('id')->on('zones');
         });
+        DB::statement("ALTER TABLE car_parts ADD image MEDIUMBLOB");
     }
 
     /**
